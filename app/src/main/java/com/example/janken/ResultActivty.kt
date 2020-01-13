@@ -60,5 +60,9 @@ class ResultActivty : AppCompatActivity() {
             1 -> resultLabel.setText(R.string.result_win)   // 勝った場合
             2 -> resultLabel.setText(R.string.result_lose)  // 負けた場合
         }
+
+        // 戻る処理
+        //  finichメソッドを実行処理を行う
+        backButton.setOnClickListener { finish() }
     }
 }
