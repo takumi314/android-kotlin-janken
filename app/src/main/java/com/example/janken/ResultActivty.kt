@@ -2,9 +2,14 @@ package com.example.janken
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_result_activty.*
 
 class ResultActivty : AppCompatActivity() {
+
+    private val gu = 0
+    private val choki = 1
+    private val pa = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,5 +27,19 @@ class ResultActivty : AppCompatActivity() {
             R.id.choki_img_btn -> myHandImage.setImageResource(R.drawable.choki)
             R.id.pa_img_btn -> myHandImage.setImageResource(R.drawable.pa)
         }
+
+        // コンピュータの手を決める
+        val computerHand = (Math.random() * 3).toInt()
+        when(computerHand) {
+            // その手に合わせた画像をイメージビューに表示する
+            // computerHand = 0 のとき
+            gu -> comHandImage.setImageResource(R.drawable.com_gu)
+            // computerHand = 1 のとき
+            choki -> comHandImage.setImageResource(R.drawable.com_choki)
+            // computerHand = 2 のとき
+            pa -> comHandImage.setImageResource(R.drawable.com_pa)
+        }
+
+        // 勝敗を判定する
     }
 }
