@@ -34,6 +34,10 @@ class MainActivity : AppCompatActivity() {
         //  第2引数: 呼び出したいアクティビティのクラス
         //      -> ジャンケン結果画面 ResultActivity を渡している。
         val intent = Intent(this, ResultActivty::class.java)
+        // ResultActivityに値を渡すため、インデントにデータを格納する
+        //  第1引数: 追加したい情報のキー(任意)
+        //  第2引数: 追加する値
+        intent.putExtra("MY_HAND", view?.id)
         // アクティビティを起動します
         //  第1引数:　起動するアクティビティをセットしたIntentインスタンス
         startActivity(intent)
