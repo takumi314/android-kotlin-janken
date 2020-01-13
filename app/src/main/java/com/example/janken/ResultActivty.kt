@@ -19,13 +19,26 @@ class ResultActivty : AppCompatActivity() {
         //  第１引数: 取り出したい情報のキー
         //  第２引数: 取り出し失敗時のデフォルト値
         val id = intent.getIntExtra("MY_HAND", 0)
+
         //前の画面で押されたボタンにあわせて画像を表示する (条件分岐)
-        when(id) {
+        val myHand: Int = when(id) {
             // ImageViewのコンテンツに画像リソースを指定する
             //  R.drawable.id名　(id名: 画像ファイル名の拡張子を除いたもの)
-            R.id.gu_img_btn -> myHandImage.setImageResource(R.drawable.gu)
-            R.id.choki_img_btn -> myHandImage.setImageResource(R.drawable.choki)
-            R.id.pa_img_btn -> myHandImage.setImageResource(R.drawable.pa)
+            R.id.gu_img_btn -> {
+                myHandImage.setImageResource(R.drawable.gu)
+                gu
+            }
+            R.id.choki_img_btn -> {
+                myHandImage.setImageResource(R.drawable.choki)
+                choki
+            }
+            R.id.pa_img_btn -> {
+                myHandImage.setImageResource(R.drawable.pa)
+                pa
+            }
+            else -> {
+                gu
+            }
         }
 
         // コンピュータの手を決める
@@ -41,5 +54,11 @@ class ResultActivty : AppCompatActivity() {
         }
 
         // 勝敗を判定する
+        val gameResult = (computerHand - myHand + 3 ) % 3
+        when(gameResult) {
+            0 -> resultLabel.setText(R.string.result_draw)  // 引き分け
+            1 -> resultLabel.setText(R.string.result_win)   // 勝った場合
+            2 -> resultLabel.setText(R.string.result_lose)  // 負けた場合
+        }
     }
 }
